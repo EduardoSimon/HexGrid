@@ -12,15 +12,21 @@ public class HexGrid : MonoBehaviour
 	public Text labelPrefab;
 
 	Canvas canvas;
+	HexMesh hexMesh;
 	HexCell[] cells;
 
 	private void Awake() 
 	{
 		cells = new HexCell[height * width];
 		canvas = GetComponentInChildren<Canvas>();
+		hexMesh = GetComponentInChildren<HexMesh>();
 
 		FillGrid();
+	}
 
+	void Start ()
+	{
+		hexMesh.Triangulate(cells);
 	}
 
 	void CreateCell(int x, int z, int i)
@@ -33,11 +39,12 @@ public class HexGrid : MonoBehaviour
 		HexCell cell = cells[i] = Instantiate<HexCell>(cellPrefab);
 		cell.transform.SetParent(transform,false);
 		cell.transform.localPosition = position;
+		cell.hexCoordinates = HexCoordinates.FromOffsetCoordinates(x,z);
 
 		Text label = Instantiate<Text>(labelPrefab);
 		label.rectTransform.SetParent(canvas.transform,false);
 		label.rectTransform.anchoredPosition = new Vector2(position.x,position.z);
-		label.text = x.ToString() + "\n" + z.ToString();
+		label.text = cell.hexCoordinates.ToStringOnSeparateLines();
 	}
 
 	void FillGrid()
@@ -50,14 +57,30 @@ public class HexGrid : MonoBehaviour
 			}
 		}
 	}
-	
-	// Use this for initialization
-	void Start () {
-		
+
+	private void Update() {
+		if (Input.GetMouseButton(0))
+		{
+			HandleInput();
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	void HandleInput()
+	{
+		Ray hitRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+		RaycastHit hit;
+		if (Physics.Raycast(hitRay,out hit))
+		{
+			TouchCell(hit.point);
+		}
 	}
+
+	void TouchCell(Vector3 touch)
+	{
+		touch = transform.InverseTransformPoint(touch);
+		HexCoordinates coords = HexCoordinates.FromPosition(touch);
+		Debug.Log("Touched at: " + coords.ToString());
+	}	
+	
+	
 }
