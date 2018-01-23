@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4348433059085786}
-  - component: {fileID: 114741037505979990}
+  - component: {fileID: 114263028399415836}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -131,6 +131,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1926803307842600}
   m_Mesh: {fileID: 0}
+--- !u!114 &114263028399415836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1891943595896680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 414a0fc06528949a0baff4f719b04a4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 6
+  height: 6
+  defaultColor: {r: 0.46323532, g: 0.40192476, b: 0.40192476, a: 1}
+  cellPrefab: {fileID: 114354873759245464, guid: 7ac6db350ada4480888b45e7b5cce8a1,
+    type: 2}
+  cellLabelPrefab: {fileID: 114540353134065920, guid: 0bdeee781efe74954b15b2f2541a825c,
+    type: 2}
 --- !u!114 &114330683638196120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,24 +170,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 10
---- !u!114 &114741037505979990
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1891943595896680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 722ef05518c544b5ca36b07e5f7f7628, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  height: 6
-  width: 6
-  cellPrefab: {fileID: 114036242565960708, guid: 7ac6db350ada4480888b45e7b5cce8a1,
-    type: 2}
-  labelPrefab: {fileID: 114540353134065920, guid: 0bdeee781efe74954b15b2f2541a825c,
-    type: 2}
 --- !u!114 &114956966054856930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,6 +181,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921b2e52ab02b40739b15441644b7338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mesh: {fileID: 0}
+  meshCollider: {fileID: 0}
+  vertices: []
+  triangles: 
+  colors: []
 --- !u!223 &223013939682192934
 Canvas:
   m_ObjectHideFlags: 1

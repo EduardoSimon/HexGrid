@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 223467526944351370}
   - component: {fileID: 114606977953568724}
   - component: {fileID: 114057260600731948}
-  - component: {fileID: 114736381269124774}
+  - component: {fileID: 114074750692921784}
   m_Layer: 5
   m_Name: HexMapEditorCanvas
   m_TagString: Untagged
@@ -332,6 +332,23 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114074750692921784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1004904024349790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e363bf5181e448a78cb05f5d6a64930, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colors:
+  - {r: 1, g: 0.7655173, b: 0, a: 0}
+  - {r: 0, g: 0.6689658, b: 1, a: 0}
+  - {r: 0.2794118, g: 0.1376514, b: 0.1376514, a: 0}
+  - {r: 0, g: 1, b: 0.13103461, a: 0}
+  hexGrid: {fileID: 0}
 --- !u!114 &114080118421791118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -430,11 +447,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114194170998563952}
   toggleTransition: 1
   graphic: {fileID: 114526671143047728}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 114136763372092176}
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114736381269124774}
+      - m_Target: {fileID: 114074750692921784}
         m_MethodName: SelectColor
         m_Mode: 3
         m_Arguments:
@@ -444,7 +461,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
@@ -498,11 +515,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114623553152106794}
   toggleTransition: 1
   graphic: {fileID: 114822483414668108}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 114136763372092176}
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114736381269124774}
+      - m_Target: {fileID: 114074750692921784}
         m_MethodName: SelectColor
         m_Mode: 3
         m_Arguments:
@@ -512,7 +529,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
@@ -798,19 +815,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114736381269124774
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1004904024349790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6eda03667a7daf149b769d2b5262cc22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colors: []
-  hexGrid: {fileID: 0}
 --- !u!114 &114752592517374666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -849,11 +853,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114091640368116774}
   toggleTransition: 1
   graphic: {fileID: 114170281209788626}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 114136763372092176}
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114736381269124774}
+      - m_Target: {fileID: 114074750692921784}
         m_MethodName: SelectColor
         m_Mode: 3
         m_Arguments:
@@ -863,7 +867,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
@@ -905,11 +909,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114934649599072086}
   toggleTransition: 1
   graphic: {fileID: 114607842072662616}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 114136763372092176}
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114736381269124774}
+      - m_Target: {fileID: 114074750692921784}
         m_MethodName: SelectColor
         m_Mode: 3
         m_Arguments:
@@ -919,7 +923,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
