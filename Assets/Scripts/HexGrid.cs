@@ -1,82 +1,128 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class HexGrid : MonoBehaviour {
+public class HexGrid : MonoBehaviour
+{
+    public int chunkCountX = 4, chunkCountZ = 3;
+    public HexGridChunk chunkPrefab;
+    public Color defaultColor = Color.white;
+    public Texture2D noiseSource;
+    public HexCell cellPrefab;
+    public Text cellLabelPrefab;
 
-	public int width = 6;
-	public int height = 6;
+    HexCell[] cells;
+    private HexGridChunk[] chunks;
 
-	public Color defaultColor = Color.white;
+    private int cellCountX, cellCountZ;
 
-	public HexCell cellPrefab;
-	public Text cellLabelPrefab;
-
-	HexCell[] cells;
-
-	Canvas gridCanvas;
-	HexMesh hexMesh;
-
-	void Awake () {
-		gridCanvas = GetComponentInChildren<Canvas>();
-		hexMesh = GetComponentInChildren<HexMesh>();
-
-		cells = new HexCell[height * width];
-
-		for (int z = 0, i = 0; z < height; z++) {
-			for (int x = 0; x < width; x++) {
-				CreateCell(x, z, i++);
-			}
-		}
-	}
-
-	void Start ()
+    void Awake()
     {
-		hexMesh.Triangulate(cells);
-	}
+        HexMetrics.noiseSource = noiseSource;
 
-	public void ColorCell (Vector3 position, Color color) {
-		position = transform.InverseTransformPoint(position);
-		HexCoordinates coordinates = HexCoordinates.FromPosition(position);
-		int index = coordinates.X + coordinates.Z * width + coordinates.Z / 2;
-		HexCell cell = cells[index];
-		cell.color = color;
-		hexMesh.Triangulate(cells);
-	}
+        cellCountX = HexMetrics.chunkSizeX * chunkCountX;
+        cellCountZ = HexMetrics.chunkSizeZ * chunkCountZ;
 
-	void CreateCell (int x, int z, int i) {
-		Vector3 position;
-		position.x = (x + z * 0.5f - z / 2) * (HexMetrics.innerRadius * 2f);
-		position.y = 0f;
-		position.z = z * (HexMetrics.outerRadius * 1.5f);
+        CreateChunks();
+        CreateCells();
+    }
 
-		HexCell cell = cells[i] = Instantiate<HexCell>(cellPrefab);
-		cell.transform.SetParent(transform, false);
-		cell.transform.localPosition = position;
-		cell.coordinates = HexCoordinates.FromOffsetCoordinates(x, z);
-		cell.color = defaultColor;
+    private void CreateChunks()
+    {
+        chunks = new HexGridChunk[chunkCountX * chunkCountZ];
 
-		if (x > 0) {
-			cell.SetNeighbor(HexDirection.W, cells[i - 1]);
-		}
-		if (z > 0) {
-			if ((z & 1) == 0) {
-				cell.SetNeighbor(HexDirection.SE, cells[i - width]);
-				if (x > 0) {
-					cell.SetNeighbor(HexDirection.SW, cells[i - width - 1]);
-				}
-			}
-			else {
-				cell.SetNeighbor(HexDirection.SW, cells[i - width]);
-				if (x < width - 1) {
-					cell.SetNeighbor(HexDirection.SE, cells[i - width + 1]);
-				}
-			}
-		}
+        for (int i = 0, z = 0; z < chunkCountZ; z++)
+        {
+            for (int x = 0; x < chunkCountX; x++)
+            {
+                HexGridChunk chunk = chunks[i++] = Instantiate(chunkPrefab);
+                chunk.transform.SetParent(transform);
+            }
+        }
+    }
 
-		Text label = Instantiate<Text>(cellLabelPrefab);
-		label.rectTransform.SetParent(gridCanvas.transform, false);
-		label.rectTransform.anchoredPosition =
-			new Vector2(position.x, position.z);
-		label.text = cell.coordinates.ToStringOnSeparateLines();
-	}
+    private void CreateCells()
+    {
+        cells = new HexCell[cellCountX * cellCountZ];
+
+        for (int z = 0, i = 0; z < cellCountZ; z++)
+        {
+            for (int x = 0; x < cellCountX; x++)
+            {
+                CreateCell(x, z, i++);
+            }
+        }
+    }
+
+    void OnEnable()
+    {
+        HexMetrics.noiseSource = noiseSource;
+    }
+
+    public HexCell GetCell(Vector3 position)
+    {
+        position = transform.InverseTransformPoint(position);
+        HexCoordinates coordinates = HexCoordinates.FromPosition(position);
+        int index = coordinates.X + coordinates.Z * cellCountX + coordinates.Z / 2;
+        return cells[index];
+    }
+
+    void CreateCell(int x, int z, int i)
+    {
+        Vector3 position;
+        position.x = (x + z * 0.5f - z / 2) * (HexMetrics.innerRadius * 2f);
+        position.y = 0f;
+        position.z = z * (HexMetrics.outerRadius * 1.5f);
+
+        HexCell cell = cells[i] = Instantiate<HexCell>(cellPrefab);
+        cell.transform.localPosition = position;
+        cell.coordinates = HexCoordinates.FromOffsetCoordinates(x, z);
+        cell.Color = defaultColor;
+
+        if (x > 0)
+        {
+            cell.SetNeighbor(HexDirection.W, cells[i - 1]);
+        }
+
+        if (z > 0)
+        {
+            if ((z & 1) == 0)
+            {
+                cell.SetNeighbor(HexDirection.SE, cells[i - cellCountX]);
+                if (x > 0)
+                {
+                    cell.SetNeighbor(HexDirection.SW, cells[i - cellCountX - 1]);
+                }
+            }
+            else
+            {
+                cell.SetNeighbor(HexDirection.SW, cells[i - cellCountX]);
+                if (x < cellCountX - 1)
+                {
+                    cell.SetNeighbor(HexDirection.SE, cells[i - cellCountX + 1]);
+                }
+            }
+        }
+
+        Text label = Instantiate<Text>(cellLabelPrefab);
+        cell.rect = label.rectTransform;
+        label.rectTransform.anchoredPosition =
+            new Vector2(position.x, position.z);
+        label.text = cell.coordinates.ToStringOnSeparateLines();
+
+        cell.ElevationLevel = 0;
+
+        AddCellToChunk(x, z, cell);
+
+    }
+
+    private void AddCellToChunk(int x, int z, HexCell cell)
+    {
+        int chunkX = x / HexMetrics.chunkSizeX;
+        int chunkZ = z / HexMetrics.chunkSizeZ;
+        HexGridChunk chunk = chunks[chunkX + chunkZ * chunkCountX];
+
+        int localX = x - chunkX * HexMetrics.chunkSizeX;
+        int localZ = z - chunkZ * HexMetrics.chunkSizeZ;
+        chunk.AddCell(localX + localZ * HexMetrics.chunkSizeX, cell);
+    }
 }

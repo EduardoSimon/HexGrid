@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class HexMapEditor : MonoBehaviour {
 
 	public Color[] colors;
-
 	public HexGrid hexGrid;
 
 	private Color activeColor;
+    private int activeElevation;
 
 	void Awake () {
 		SelectColor(0);
@@ -25,12 +26,24 @@ public class HexMapEditor : MonoBehaviour {
 	void HandleInput () {
 		Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
-		if (Physics.Raycast(inputRay, out hit)) {
-			hexGrid.ColorCell(hit.point, activeColor);
+		if (Physics.Raycast(inputRay, out hit))
+		{
+		    EditCell(hexGrid.GetCell(hit.point));
 		}
 	}
+        
+    private void EditCell(HexCell hexCell)
+    {
+        hexCell.Color = activeColor;
+        hexCell.ElevationLevel = activeElevation;
+    }
 
-	public void SelectColor (int index) {
+    public void SelectColor (int index) {
 		activeColor = colors[index];
 	}
+
+    public void SetElevationLevel(float value)
+    {
+        activeElevation = (int) value;
+    }
 }
