@@ -167,14 +167,14 @@ Prefab:
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 940123449ac7e384ea7e77a03cf2d051, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 940123449ac7e384ea7e77a03cf2d051, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &916574024
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 916574027}
   - component: {fileID: 916574026}
@@ -189,7 +189,7 @@ GameObject:
 --- !u!114 &916574025
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 916574024}
   m_Enabled: 1
@@ -207,7 +207,7 @@ MonoBehaviour:
 --- !u!114 &916574026
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 916574024}
   m_Enabled: 1
@@ -221,7 +221,7 @@ MonoBehaviour:
 --- !u!4 &916574027
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 916574024}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -341,12 +341,12 @@ Prefab:
     - target: {fileID: 224445867036344110, guid: 175296e57bfd78d44b52b434c7d0fadf,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224641546505689360, guid: 175296e57bfd78d44b52b434c7d0fadf,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114994637727991942, guid: 175296e57bfd78d44b52b434c7d0fadf,
         type: 2}
@@ -373,15 +373,25 @@ Prefab:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 224291234467990518, guid: 175296e57bfd78d44b52b434c7d0fadf,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224501114497969004, guid: 175296e57bfd78d44b52b434c7d0fadf,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 175296e57bfd78d44b52b434c7d0fadf, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 175296e57bfd78d44b52b434c7d0fadf, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1007786749
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1007786751}
   - component: {fileID: 1007786750}
@@ -395,7 +405,7 @@ GameObject:
 --- !u!108 &1007786750
 Light:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1007786749}
   m_Enabled: 1
@@ -422,6 +432,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
@@ -431,7 +442,7 @@ Light:
 --- !u!4 &1007786751
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1007786749}
   m_LocalRotation: {x: 0.629833, y: -0, z: -0, w: 0.77673066}
@@ -443,7 +454,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 78.076004, y: 0, z: 0}
 --- !u!114 &1521011326 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114074750692921784, guid: 175296e57bfd78d44b52b434c7d0fadf,
+  m_CorrespondingSourceObject: {fileID: 114074750692921784, guid: 175296e57bfd78d44b52b434c7d0fadf,
     type: 2}
   m_PrefabInternal: {fileID: 996786358}
   m_Script: {fileID: 11500000, guid: 1e363bf5181e448a78cb05f5d6a64930, type: 3}
@@ -527,11 +538,11 @@ Prefab:
       value: 
       objectReference: {fileID: 2044468585}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 5031d69c04cd5874aabdb979527a8229, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 5031d69c04cd5874aabdb979527a8229, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!114 &2044468585 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114263028399415836, guid: 940123449ac7e384ea7e77a03cf2d051,
+  m_CorrespondingSourceObject: {fileID: 114263028399415836, guid: 940123449ac7e384ea7e77a03cf2d051,
     type: 2}
   m_PrefabInternal: {fileID: 255779012}
   m_Script: {fileID: 11500000, guid: 414a0fc06528949a0baff4f719b04a4f, type: 3}
